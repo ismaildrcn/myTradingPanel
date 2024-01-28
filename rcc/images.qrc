@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="images">
+    <file>../templates/images/add-file-black.svg</file>
+    <file>../templates/images/add-file-white.svg</file>
+    <file>../templates/images/home-black.svg</file>
+    <file>../templates/images/home-white.svg</file>
+    <file>../templates/images/menu-navigation-grid-black.svg</file>
+    <file>../templates/images/menu-navigation-grid-white.svg</file>
+  </qresource>
+</RCC>
