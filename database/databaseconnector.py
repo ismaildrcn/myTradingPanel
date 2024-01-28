@@ -8,7 +8,7 @@ class Database():
         self.createSymbolTable()
 
     def createSymbolTable(self):
-        command = "CREATE TABLE IF NOT EXISTS symbols (id INTEGER PRIMARY KEY AUTOINCREMENT, symbol varchar(8) NOT NULL, screener varchar(16) NOT NULL, exchange varchar(32) NOT NULL)"
+        command = "CREATE TABLE IF NOT EXISTS symbols (id INTEGER PRIMARY KEY AUTOINCREMENT, symbol varchar(8) NOT NULL, screener varchar(16) NOT NULL, exchange varchar(32) NOT NULL, cost FLOAT NOT NULL, lot FLOAT NOT NULL)"
         self.cursor.execute(command)
 
     def addSymbol(self, symbol, screener, exchange, cost, lot):
@@ -16,7 +16,7 @@ class Database():
             existing_record = self.checkQuery(symbol)
             if not existing_record:
                 command = f"INSERT INTO symbols (symbol, screener, exchange, cost, lot) VALUES (?, ?, ?, ?, ?)"
-                self.cursor.execute(command, (symbol, screener, exchange, cost, lot))
+                self.cursor.execute(command, (symbol.upper(), screener.lower(), exchange.upper(), cost, lot))
                 self.connection.commit()
             else:
                 print("Kayıt zaten var, tekrar eklenmedi.")

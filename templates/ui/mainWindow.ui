@@ -22,15 +22,19 @@ QPushButton{
 	border:none;
 	color:#FFFFFF;
 	border-radius:6px;
+	max-height:40px;
+	min-height:40px;
 	background-color:  #27323A;
 	padding-left:10px;
 	padding-right:10px;
 	padding-top:5px;
 	padding-bottom:5px;
 }
-
 QPushButton:hover{
 	background-color: rgb(92, 109, 121);
+}
+QPushButton:focus{
+	background-color: #29A19C;
 }
 QLineEdit{
 	border:none;
@@ -92,7 +96,7 @@ QLineEdit:focus{
          <property name="minimumSize">
           <size>
            <width>60</width>
-           <height>40</height>
+           <height>50</height>
           </size>
          </property>
          <property name="text">
@@ -133,13 +137,13 @@ QLineEdit:focus{
            <property name="minimumSize">
             <size>
              <width>60</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>60</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="text">
@@ -162,7 +166,7 @@ QLineEdit:focus{
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="font">
@@ -188,13 +192,13 @@ QLineEdit:focus{
            <property name="minimumSize">
             <size>
              <width>60</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>60</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="text">
@@ -202,7 +206,7 @@ QLineEdit:focus{
            </property>
            <property name="icon">
             <iconset resource="../../rcc/images.qrc">
-             <normaloff>:/images/templates/images/add-file-white.svg</normaloff>:/images/templates/images/add-file-white.svg</iconset>
+             <normaloff>:/images/templates/images/alt-store-white.svg</normaloff>:/images/templates/images/alt-store-white.svg</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -217,7 +221,7 @@ QLineEdit:focus{
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="font">
@@ -227,7 +231,7 @@ QLineEdit:focus{
             </font>
            </property>
            <property name="text">
-            <string>SEMBOL EKLE</string>
+            <string>SEMBOL</string>
            </property>
           </widget>
          </item>
@@ -301,14 +305,11 @@ QLineEdit:focus{
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="page_wallet">
              <property name="styleSheet">
-              <string notr="true">#page_wallet{
-background-color: #435055;
-}	
-</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_page_wallet">
               <item>
@@ -489,254 +490,329 @@ background-color: #435055;
              </layout>
             </widget>
             <widget class="QWidget" name="page_add_symbol">
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item alignment="Qt::AlignTop">
-               <widget class="QWidget" name="widget" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_9">
-                 <item>
-                  <layout class="QVBoxLayout" name="verticalLayout_3">
-                   <property name="spacing">
-                    <number>15</number>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QWidget" name="widget_2" native="true">
+                <layout class="QGridLayout" name="gridLayout">
+                 <property name="leftMargin">
+                  <number>50</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>50</number>
+                 </property>
+                 <property name="horizontalSpacing">
+                  <number>50</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pushButton_add_symbol_in">
+                   <property name="font">
+                    <font>
+                     <pointsize>13</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
                    </property>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_6">
-                     <item>
-                      <widget class="QLineEdit" name="lineEdit_symbol_name">
-                       <property name="minimumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="placeholderText">
-                        <string>Sembol</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="lineEdit_symbol_exchange">
-                       <property name="minimumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="placeholderText">
-                        <string>Borsa (BIST, NASDAQ)</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_8">
-                     <item>
-                      <widget class="QLineEdit" name="lineEdit_symbol_cost">
-                       <property name="minimumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="placeholderText">
-                        <string>Maliyet</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="lineEdit_symbol_lot">
-                       <property name="minimumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>200</width>
-                         <height>35</height>
-                        </size>
-                       </property>
-                       <property name="placeholderText">
-                        <string>Lot</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item alignment="Qt::AlignRight">
-                    <widget class="QComboBox" name="comboBox_4">
-                     <item>
-                      <property name="text">
-                       <string>Turkey</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Amerika</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Australia</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Brazil</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>CFD</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Canada</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Cryptocurrency</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Euronext</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Forex</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>France</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Germany</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Hong Kong</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>India</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Indonesia</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Italy</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Malaysia</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Philippines</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Russia</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Saudi Arabia</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>South Africa</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>South Korea</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Spain</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Sweden</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Taiwan</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Thailand</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>United Kingdom</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Vietnam</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item alignment="Qt::AlignHCenter">
-                    <widget class="QPushButton" name="pushButton_add_symbol">
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>40</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string>Sembol Ekle</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="text">
+                    <string>Ekle</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../rcc/images.qrc">
+                     <normaloff>:/images/templates/images/add-file-white.svg</normaloff>:/images/templates/images/add-file-white.svg</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QPushButton" name="pushButton_edit_symbol_in">
+                   <property name="font">
+                    <font>
+                     <pointsize>13</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Düzenle</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="../../rcc/images.qrc">
+                     <normaloff>:/images/templates/images/edit-clipboard-white.svg</normaloff>:/images/templates/images/edit-clipboard-white.svg</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QStackedWidget" name="stackedWidget_symbol">
+                <widget class="QWidget" name="page">
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <item alignment="Qt::AlignTop">
+                   <widget class="QWidget" name="widget" native="true">
+                    <layout class="QHBoxLayout" name="horizontalLayout_9">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_3">
+                       <property name="spacing">
+                        <number>15</number>
+                       </property>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_symbol_name">
+                           <property name="minimumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Sembol</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_symbol_exchange">
+                           <property name="minimumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Borsa (BIST, NASDAQ)</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_10">
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_symbol_cost">
+                           <property name="minimumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Maliyet</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="lineEdit_symbol_lot">
+                           <property name="minimumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>200</width>
+                             <height>35</height>
+                            </size>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Lot</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item alignment="Qt::AlignRight">
+                        <widget class="QComboBox" name="comboBox_symbol_screener">
+                         <item>
+                          <property name="text">
+                           <string>Turkey</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Amerika</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Australia</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Brazil</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>CFD</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Canada</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Cryptocurrency</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Euronext</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Forex</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>France</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Germany</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Hong Kong</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>India</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Indonesia</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Italy</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Malaysia</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Philippines</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Russia</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Saudi Arabia</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>South Africa</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>South Korea</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Spain</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Sweden</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Taiwan</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Thailand</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>United Kingdom</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Vietnam</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QPushButton" name="pushButton_add_symbol">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>Sembol Ekle</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="page_2"/>
                </widget>
               </item>
              </layout>
