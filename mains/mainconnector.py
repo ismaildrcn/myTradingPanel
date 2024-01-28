@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow
 from templates.ui.mainWindow import Ui_MainWindow
-from customsymbol.symbolcore import Symbol
-from customsymbol.getsymbol import GetSymbol
+from customsymbol.symbolhandler import SymbolHandler
 from database.databaseconnector import Database
 from popup.popup import Popup
 
@@ -12,7 +11,7 @@ class MainConnector(QMainWindow, Ui_MainWindow):
         self.previousTitleIndex = None
         self.menu_status = None
         self.setupUi(self)
-        self.getSymbol = GetSymbol()
+        self.symbolHandler = SymbolHandler(self)
         self.database = Database()
         self.popup = Popup()
         symbol_list = ['asd', 'BOBET', 'REEDR', 'BINHO', 'TABGD', 'THYAO']
@@ -30,40 +29,18 @@ class MainConnector(QMainWindow, Ui_MainWindow):
         self.menu_pushButton_add_symbol_s.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
         self.pushButton_add_symbol_in.clicked.connect(lambda: self.stackedWidget_symbol.setCurrentIndex(0))
         self.pushButton_edit_symbol_in.clicked.connect(lambda: self.stackedWidget_symbol.setCurrentIndex(1))
-        self.pushButton_add_symbol.clicked.connect(self.addSymbol)
+        self.pushButton_add_symbol.clicked.connect(self.symbolHandler.symbolRealtime.addSymbol)
         self.menu_pushButton.clicked.connect(self.setMenu)
 
         self.stackedWidget.currentChanged.connect(self.stackedWidgetCurrentChanged)
-
-    def addSymbol(self):
-        if (
-                not self.lineEdit_symbol_name.text() == '' and
-                not self.lineEdit_symbol_exchange.text() == '' and
-                not self.lineEdit_symbol_cost.text() == '' and
-                not self.lineEdit_symbol_lot.text() == '' and
-                not self.comboBox_symbol_screener.currentText() == ''
-        ):
-            if self.getSymbol.get_symbol(
-                    symbol=self.lineEdit_symbol_name.text(),
-                    screener=self.comboBox_symbol_screener.currentText(),
-                    exchange=self.lineEdit_symbol_exchange.text()
-            ):
-                self.database.addSymbol(
-                    symbol=self.lineEdit_symbol_name.text().upper(),
-                    screener=self.comboBox_symbol_screener.currentText().upper().lower(),
-                    exchange=self.lineEdit_symbol_exchange.text().upper(),
-                    cost=float(self.lineEdit_symbol_cost.text()),
-                    lot=float(self.lineEdit_symbol_lot.text())
-                )
-                self.showMessagePopup(key=101)
-            else:
-                self.showMessagePopup(key=201)
-        else:
-            self.showMessagePopup(key=202)
+        self.comboBox.currentIndexChanged.connect(self.symbolHandler.prepare_home_page)
+        self.comboBox_2.currentIndexChanged.connect(self.symbolHandler.prepare_home_page)
+        self.comboBox_3.currentIndexChanged.connect(self.symbolHandler.prepare_home_page)
 
     def stackedWidgetCurrentChanged(self, index):
         if index == 0 and not self.previousTitleIndex == index:
             self.title.setText('anasayfa'.upper())
+            self.symbolHandler.prepare_home_page()
         elif index == 1 and not self.previousTitleIndex == index:
             self.title.setText('sembol ekle'.upper())
         self.previousTitleIndex = index
@@ -72,6 +49,9 @@ class MainConnector(QMainWindow, Ui_MainWindow):
         self.menu_pushButton_home_l.setVisible(False)
         self.menu_pushButton_add_symbol_l.setVisible(False)
         self.menu_status = False
+        self.comboBox.setCurrentText('Taban')
+        self.comboBox_2.setCurrentText('Tavan')
+        self.comboBox_3.setCurrentText('Kar')
 
     def setMenu(self):
         if self.menu_status:
@@ -92,3 +72,6 @@ class MainConnector(QMainWindow, Ui_MainWindow):
     def showMessagePopup(self, key):
         self.popup.showPopup(key)
         self.popup.show()
+
+
+# hisselerin db den çekilmesi sağlandı seçili colonlara göre row verileri düzenlenecek. Handler üzerinden devam et

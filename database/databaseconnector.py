@@ -25,3 +25,9 @@ class Database():
         check_query = "SELECT 1 FROM symbols WHERE symbol = ? LIMIT 1"
         self.cursor.execute(check_query, (symbol,))
         return self.cursor.fetchone()
+
+    def getAllSymbols(self):
+        with self.connection:
+            query = "SELECT * FROM symbols"
+            self.cursor.execute(query)
+            return self.cursor.fetchall()

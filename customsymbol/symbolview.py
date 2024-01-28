@@ -88,3 +88,4 @@ class SymbolView():
         self.widget.addItem(separator_item)
 
 
+
