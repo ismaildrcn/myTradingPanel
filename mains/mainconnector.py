@@ -3,6 +3,7 @@ from templates.ui.mainWindow import Ui_MainWindow
 from customsymbol.symbolcore import Symbol
 from customsymbol.getsymbol import GetSymbol
 from database.databaseconnector import Database
+from popup.popup import Popup
 
 
 class MainConnector(QMainWindow, Ui_MainWindow):
@@ -11,33 +12,54 @@ class MainConnector(QMainWindow, Ui_MainWindow):
         self.previousTitleIndex = None
         self.menu_status = None
         self.setupUi(self)
-        self.getsymbol = GetSymbol()
+        self.getSymbol = GetSymbol()
         self.database = Database()
-        symbol_list = ['SMRTG', 'BOBET', 'REEDR', 'BINHO', 'TABGD', 'THYAO']
+        self.popup = Popup()
+        symbol_list = ['asd', 'BOBET', 'REEDR', 'BINHO', 'TABGD', 'THYAO']
         self.connection()
         self.initialize()
         self.show()
 
-        for item in symbol_list:
-            Symbol(self, item, self.getsymbol.get_symbol(item))
+        # for item in symbol_list:
+        #     Symbol(self, item, self.getSymbol.get_symbol(item, 'turkey', 'bist'))
 
     def connection(self):
         self.menu_pushButton_home_l.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
+        self.menu_pushButton_home_s.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
         self.menu_pushButton_add_symbol_l.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
+        self.menu_pushButton_add_symbol_s.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
+        self.pushButton_add_symbol_in.clicked.connect(lambda: self.stackedWidget_symbol.setCurrentIndex(0))
+        self.pushButton_edit_symbol_in.clicked.connect(lambda: self.stackedWidget_symbol.setCurrentIndex(1))
         self.pushButton_add_symbol.clicked.connect(self.addSymbol)
         self.menu_pushButton.clicked.connect(self.setMenu)
 
         self.stackedWidget.currentChanged.connect(self.stackedWidgetCurrentChanged)
 
     def addSymbol(self):
-        if not self.lineEdit_symbol_name.text() == '' and not self.lineEdit_symbol_exchange.text() == '' and not self.lineEdit_symbol_screener.text() == '':
-            self.database.addSymbol(
-                symbol=self.lineEdit_symbol_name.text().upper(),
-                screener=self.lineEdit_symbol_screener.text().upper().lower(),
-                exchange=self.lineEdit_symbol_exchange.text().upper()
-            )
+        if (
+                not self.lineEdit_symbol_name.text() == '' and
+                not self.lineEdit_symbol_exchange.text() == '' and
+                not self.lineEdit_symbol_cost.text() == '' and
+                not self.lineEdit_symbol_lot.text() == '' and
+                not self.comboBox_symbol_screener.currentText() == ''
+        ):
+            if self.getSymbol.get_symbol(
+                    symbol=self.lineEdit_symbol_name.text(),
+                    screener=self.comboBox_symbol_screener.currentText(),
+                    exchange=self.lineEdit_symbol_exchange.text()
+            ):
+                self.database.addSymbol(
+                    symbol=self.lineEdit_symbol_name.text().upper(),
+                    screener=self.comboBox_symbol_screener.currentText().upper().lower(),
+                    exchange=self.lineEdit_symbol_exchange.text().upper(),
+                    cost=float(self.lineEdit_symbol_cost.text()),
+                    lot=float(self.lineEdit_symbol_lot.text())
+                )
+                self.showMessagePopup(key=101)
+            else:
+                self.showMessagePopup(key=201)
         else:
-            print("Eksik girdi!")
+            self.showMessagePopup(key=202)
 
     def stackedWidgetCurrentChanged(self, index):
         if index == 0 and not self.previousTitleIndex == index:
@@ -67,4 +89,6 @@ class MainConnector(QMainWindow, Ui_MainWindow):
         self.menu_pushButton_add_symbol_l.setVisible(False)
         self.menu_status = False
 
-    # symbol ekle ekranına lot ve maliyet gibi imputların alınması sağlanacak
+    def showMessagePopup(self, key):
+        self.popup.showPopup(key)
+        self.popup.show()

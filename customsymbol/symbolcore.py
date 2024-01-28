@@ -1,5 +1,6 @@
 from customsymbol.symbolview import SymbolView
 
+
 class SymbolCore():
     def __init__(self, parent=None):
         self.symbolView = SymbolView(parent, parent.wallet_list)

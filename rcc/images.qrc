@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="images">
+    <file>../templates/images/edit-clipboard-black.svg</file>
+    <file>../templates/images/status-success-white.svg</file>
+    <file>../templates/images/status-success-black.svg</file>
+    <file>../templates/images/status-error-white.svg</file>
+    <file>../templates/images/status-error-black.svg</file>
+    <file>../templates/images/edit-clipboard-white.svg</file>
+    <file>../templates/images/alt-store-white.svg</file>
+    <file>../templates/images/alt-store-black.svg</file>
     <file>../templates/images/add-file-black.svg</file>
     <file>../templates/images/add-file-white.svg</file>
     <file>../templates/images/home-black.svg</file>
